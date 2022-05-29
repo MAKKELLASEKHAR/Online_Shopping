@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.onlineshopping.entities.Customer;
+import com.cg.onlineshopping.exceptions.CustomerAlreadyExistException;
+import com.cg.onlineshopping.exceptions.CustomerNotFoundException;
 import com.cg.onlineshopping.repository.CustomerRepository;
 
 @Service
@@ -18,6 +20,8 @@ public class CustomerServiceImpl implements CustomerService{
 	public void addCustomer(Customer customer) {
 		Optional<Customer> addingcustomer = customerrepo.findById(customer.getCustomer_id());
 		System.out.println(addingcustomer);
+		if(!addingcustomer.isEmpty())
+			throw new CustomerAlreadyExistException();
 		customerrepo.save(customer);
 	}
 	@Override
@@ -28,7 +32,8 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Optional<Customer> getCustomerById(int customer_id) {
 		Optional<Customer> customerdetails = customerrepo.findById(customer_id);
-		
+		if(customerdetails.isEmpty())
+			throw new CustomerNotFoundException();
 		return customerdetails;
 	}
 	@Override

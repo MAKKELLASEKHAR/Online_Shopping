@@ -17,7 +17,7 @@ public class Order {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String order_id;
+	private int order_id;
 	@Column(name="order_status",length=20)
 	private String order_status;
 	@Column(name="order_date",length=20)
@@ -27,10 +27,10 @@ public class Order {
 	@OneToOne
 	@JoinColumn(name="customer_id",unique=true)
 	private Customer customer;
-	public String getOrder_id() {
+	public int getOrder_id() {
 		return order_id;
 	}
-	public void setOrder_id(String order_id) {
+	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
 	public String getOrder_status() {
