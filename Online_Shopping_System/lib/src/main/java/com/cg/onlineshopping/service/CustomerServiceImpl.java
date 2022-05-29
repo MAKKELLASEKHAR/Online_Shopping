@@ -25,5 +25,21 @@ public class CustomerServiceImpl implements CustomerService{
 		
 		return customerrepo.findAll();
 	}
+	@Override
+	public Optional<Customer> getCustomerById(int customer_id) {
+		Optional<Customer> customerdetails = customerrepo.findById(customer_id);
+		
+		return customerdetails;
+	}
+	@Override
+	public void updateCustomer(Customer customer) {
+		customerrepo.save(customer);
+		
+	}
+	@Override
+	public void deleteCustomer(int customer_id) {
+		customerrepo.deleteById(customer_id);
+		
+	}
 
 }
