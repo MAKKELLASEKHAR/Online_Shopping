@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cg.onlineshopping.dto.OrdersDto;
 import com.cg.onlineshopping.entities.Customer;
 import com.cg.onlineshopping.entities.Orders;
+import com.cg.onlineshopping.exceptions.OrderNotFoundException;
 import com.cg.onlineshopping.repository.CustomerRepository;
 import com.cg.onlineshopping.repository.OrdersRepository;
 
@@ -22,10 +23,9 @@ public class OrdersServiceImpl implements OrdersService{
 
 	@Override
 	public int addOrders(OrdersDto ordersdto) {
-		// Get Customer object by passing customer_id from ordersdto
 				Customer customer = customerrepo.getById(ordersdto.getCustomer_id());
-//				if(dept==null)
-//					throw new CustomerNotFoundException();
+				if(customer == null)
+					throw new OrderNotFoundException();
 				Orders orders = new Orders();
 				orders.setOrder_status(ordersdto.getOrder_status());
 				orders.setOrder_date(ordersdto.getOrder_date());
@@ -57,8 +57,8 @@ public class OrdersServiceImpl implements OrdersService{
 	@Override
 	public OrdersDto getOrdersById(int orders_id) {
 		Orders orders = ordersrepo.getOrdersById(orders_id);
-//		if(emp == null)
-//			throw new OrdersNotFoundException();
+		if(orders == null)
+			throw new OrderNotFoundException();
 		OrdersDto ordersdto = new OrdersDto();
 		ordersdto.setOrder_status(orders.getOrder_status());
 		ordersdto.setOrder_date(orders.getOrder_date());

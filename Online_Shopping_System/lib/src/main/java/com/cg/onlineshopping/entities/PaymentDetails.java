@@ -12,12 +12,12 @@ import javax.persistence.Table;
 public class PaymentDetails {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int payment_id;
 	@Column(name="upi_id",length=20)
 	private String upi_id;
 	@Column(name="upi_password",length=30)
-	private int upi_password;
+	private String upi_password;
 	@Column(name="name_on_card",length=30)
 	private String name_on_card;
 	@Column(name="card_number",length=25)
@@ -26,16 +26,17 @@ public class PaymentDetails {
 	private int cvv;
 	@Column(name="total_ammount")
 	private double total_ammount;
+	
 	public String getUpi_id() {
 		return upi_id;
 	}
 	public void setUpi_id(String upi_id) {
 		this.upi_id = upi_id;
 	}
-	public int getUpi_password() {
+	public String getUpi_password() {
 		return upi_password;
 	}
-	public void setUpi_password(int upi_password) {
+	public void setUpi_password(String upi_password) {
 		this.upi_password = upi_password;
 	}
 	public String getName_on_card() {

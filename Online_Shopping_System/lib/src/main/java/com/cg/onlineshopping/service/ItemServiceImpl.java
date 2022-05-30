@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.cg.onlineshopping.dto.ItemDto;
 import com.cg.onlineshopping.entities.Item;
 import com.cg.onlineshopping.entities.Vendor;
+import com.cg.onlineshopping.exceptions.ItemNotFoundException;
 import com.cg.onlineshopping.repository.ItemRepository;
 import com.cg.onlineshopping.repository.VendorRepository;
 
@@ -23,8 +24,8 @@ public class ItemServiceImpl implements ItemService{
 	public int addItem(ItemDto itemdto) {
 		
 		Vendor vendor = vendorrepo.getVendorById(itemdto.getVendor_id());
-//		if(dept==null)
-//			throw new DepartmentNotFoundException();
+		if(vendor == null)
+			throw new ItemNotFoundException();
 		Item item = new Item();
 	    item.setItem_name(itemdto.getItem_name());
 	    item.setItem_description(itemdto.getItem_description());
@@ -58,8 +59,8 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public ItemDto getItemById(int item_id) {
 		Item item = itemrepo.getItemById(item_id);
-//		if(emp == null)
-//			throw new EmployeeNotFoundException();
+		if(item == null)
+			throw new ItemNotFoundException();
 		ItemDto itemdto = new ItemDto();
 		itemdto.setItem_name(item.getItem_name());
 		itemdto.setItem_description(item.getItem_description());

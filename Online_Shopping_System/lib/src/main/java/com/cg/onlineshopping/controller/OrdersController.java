@@ -29,7 +29,7 @@ public class OrdersController {
 		@SuppressWarnings("unused")
 		int order_id = ordersservice.addOrders(ordersdto);
 		
-		return new ResponseEntity<String>("inserted orderscode = ",HttpStatus.OK);
+		return new ResponseEntity<String>("inserted orderscode = "+ order_id,HttpStatus.OK);
 		
 	}
 	@GetMapping("/viewOrders")
