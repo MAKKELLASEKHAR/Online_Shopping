@@ -9,6 +9,7 @@ public class VendorDto {
 	private String password;
 	private String catagorySpecialization;
 	private int item_id;
+	
 	public String getFirst_name() {
 		return first_name;
 	}
