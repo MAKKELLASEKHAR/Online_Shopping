@@ -103,6 +103,11 @@ public class Vendor {
 	public void setItem(List<Item> item) {
 		this.item = item;
 	}
+
+	public List<Product> getProduct() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 
