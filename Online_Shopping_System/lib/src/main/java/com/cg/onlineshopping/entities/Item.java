@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +15,7 @@ public class Item {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long item_id;
+	private int item_id;
 	
 	@Column(name="item_name",length=20)
 	private String item_name;
@@ -24,12 +26,12 @@ public class Item {
 	@Column(name="item_description",length=50)
 	private String item_description;
 	
-	public long getItem_id() {
-		return item_id;
-	}
-	public void setItem_id(long item_id) {
-		this.item_id = item_id;
-	}
+	
+	@ManyToOne
+	@JoinColumn(name ="vendor_id")
+	private Vendor vendor;
+	
+	
 	public String getItem_name() {
 		return item_name;
 	}
@@ -47,6 +49,21 @@ public class Item {
 	}
 	public void setItem_description(String item_description) {
 		this.item_description = item_description;
-	}	
+	}
+	public Vendor getVendor() {
+		return vendor;
+	}
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
+	}
+	public int getItem_id() {
+		return item_id;
+	}
+	public void setItem_id(int item_id) {
+		this.item_id = item_id;
+	}
+	
+	
+	
 
 }

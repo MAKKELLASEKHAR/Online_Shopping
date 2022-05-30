@@ -27,10 +27,10 @@ public class OrdersServiceImpl implements OrdersService{
 //				if(dept==null)
 //					throw new CustomerNotFoundException();
 				Orders orders = new Orders();
-				orders.setOrder_status(orders.getOrder_status());
+				orders.setOrder_status(ordersdto.getOrder_status());
 				orders.setOrder_date(ordersdto.getOrder_date());
-				orders.setAmount(orders.getAmount());
-				orders.setDelivery_time(orders.getDelivery_time());
+				orders.setAmount(ordersdto.getAmount());
+				orders.setDelivery_time(ordersdto.getDelivery_time());
 				orders.setCustomer(customer);
 				ordersrepo.save(orders);
 				

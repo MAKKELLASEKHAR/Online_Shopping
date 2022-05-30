@@ -1,16 +1,13 @@
 package com.cg.onlineshopping.service;
 
 import java.util.List;
-import java.util.Optional;
-
-import com.cg.onlineshopping.entities.Item;
+import com.cg.onlineshopping.dto.ItemDto;
 
 public interface ItemService {
   
 	
-	void addItem(Item item);
-	List<Item> viewAllItem();
-	Optional<Item> getItemById(long item_id);
-	void updateItem(Item item);
-	void deleteItem(long item_id);
+	int addItem(ItemDto itemdto);
+	List<ItemDto> viewAllItems();
+	ItemDto getItemById(int item_id);
+	void deleteItem(int item_id);
 }

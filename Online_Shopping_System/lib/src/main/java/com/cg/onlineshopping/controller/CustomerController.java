@@ -25,13 +25,13 @@ public class CustomerController {
 	@Autowired
 	CustomerServiceImpl service;
 	
-	@PostMapping
-	public ResponseEntity<String> addCustomer(@RequestBody Customer customer){
-		service.addCustomer(customer);
+	@PostMapping("/customerRegistration")
+	public ResponseEntity<String> customerRegistration(@RequestBody Customer customer){
+		service.customerRegistration(customer);
 		return new ResponseEntity<String>("inserted",HttpStatus.OK);
 		
 	}
-	@GetMapping
+	@GetMapping("/viewAllCustomers")
 	public ResponseEntity<List<Customer>> getAllCustomer(){
 		List<Customer> customerlist = service.viewAllCustomer();
 		return new ResponseEntity<List<Customer>>(customerlist,HttpStatus.OK);
@@ -50,7 +50,7 @@ public class CustomerController {
 	}
 	
 	@DeleteMapping("/id/{customer_id}")
-	public ResponseEntity<String> deleteDepartment(@PathVariable int customer_id){
+	public ResponseEntity<String> deleteCustomer(@PathVariable int customer_id){
 		service.deleteCustomer(customer_id);
 		return new ResponseEntity<String>("deleted",HttpStatus.OK);
 	}

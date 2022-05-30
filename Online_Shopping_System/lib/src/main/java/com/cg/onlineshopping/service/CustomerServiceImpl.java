@@ -17,7 +17,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	CustomerRepository customerrepo;
 	@Override
-	public void addCustomer(Customer customer) {
+	public void customerRegistration(Customer customer) {
 		Optional<Customer> addingcustomer = customerrepo.findById(customer.getCustomer_id());
 		System.out.println(addingcustomer);
 		if(!addingcustomer.isEmpty())

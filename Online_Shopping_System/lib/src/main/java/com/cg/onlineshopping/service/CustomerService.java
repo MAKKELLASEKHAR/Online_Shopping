@@ -9,7 +9,7 @@ import com.cg.onlineshopping.exceptions.CustomerNotFoundException;
 
 public interface CustomerService {
 	
-	void addCustomer(Customer customer) throws CustomerAlreadyExistException;
+	void customerRegistration(Customer customer) throws CustomerAlreadyExistException;
 	List<Customer> viewAllCustomer();
 	Optional<Customer> getCustomerById(int customer_id) throws CustomerNotFoundException;
 	void updateCustomer(Customer customer);

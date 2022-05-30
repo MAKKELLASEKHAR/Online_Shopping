@@ -1,45 +1,83 @@
 package com.cg.onlineshopping.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.onlineshopping.dto.ItemDto;
 import com.cg.onlineshopping.entities.Item;
+import com.cg.onlineshopping.entities.Vendor;
 import com.cg.onlineshopping.repository.ItemRepository;
+import com.cg.onlineshopping.repository.VendorRepository;
 
 @Service
 public class ItemServiceImpl implements ItemService{
 
 	@Autowired
 	ItemRepository itemrepo;
+	@Autowired
+	VendorRepository vendorrepo;
+
 	@Override
-	public void addItem(Item item) {
-		Optional<Item> addingitem = itemrepo.findById(item.getItem_id());
-		System.out.println(addingitem);
-		itemrepo.save(item);
-	}
-	@Override
-	public List<Item> viewAllItem() {
+	public int addItem(ItemDto itemdto) {
 		
-		return itemrepo.findAll();
+		Vendor vendor = vendorrepo.getVendorById(itemdto.getVendor_id());
+//		if(dept==null)
+//			throw new DepartmentNotFoundException();
+		Item item = new Item();
+	    item.setItem_name(itemdto.getItem_name());
+	    item.setItem_description(itemdto.getItem_description());
+	    item.setItem_price(itemdto.getItem_price());
+	    item.setVendor(vendor);
+	    itemrepo.save(item);
+		return item.getItem_id();
 	}
+
+	
 	
 	@Override
-	public Optional<Item> getItemById(long item_id) {
-		Optional<Item> itemdetails = itemrepo.findById(item_id);
+	public List<ItemDto> viewAllItems() {
 		
-		return itemdetails;
-	}
-	@Override
-	public void updateItem(Item item) {
-		itemrepo.save(item);
+		List<Item> itemlist= itemrepo.findAll();
+		ArrayList<ItemDto> itemdtolist =new ArrayList<ItemDto>();
+		for(Item item : itemlist) {
+			ItemDto itemdto = new ItemDto();
+			itemdto.setItem_description(item.getItem_description());
+			itemdto.setItem_name(item.getItem_name());
+			itemdto.setItem_price(item.getItem_price());
+			itemdto.setVendor_id(item.getVendor().getVendor_id());
+			itemdtolist.add(itemdto);
+
+		}
 		
+		return itemdtolist;
+		 
 	}
+
 	@Override
-	public void deleteItem(long item_id) {
+	public ItemDto getItemById(int item_id) {
+		Item item = itemrepo.getItemById(item_id);
+//		if(emp == null)
+//			throw new EmployeeNotFoundException();
+		ItemDto itemdto = new ItemDto();
+		itemdto.setItem_name(item.getItem_name());
+		itemdto.setItem_description(item.getItem_description());
+		itemdto.setItem_price(item.getItem_price());
+		itemdto.setVendor_id(item.getVendor().getVendor_id());
+		
+		
+		return itemdto;
+	}
+
+	@Override
+	public void deleteItem(int item_id) {
 		itemrepo.deleteById(item_id);
 		
-}
+	}
+
+
+
+	
+
 }

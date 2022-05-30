@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Orders {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int order_id;
 	
 	@Column(name="order_status",length=20)
@@ -82,7 +82,7 @@ public class Orders {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
+
 	
 
 }

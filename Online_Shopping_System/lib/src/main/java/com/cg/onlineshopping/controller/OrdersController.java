@@ -26,6 +26,7 @@ public class OrdersController {
 	@PostMapping("/addOrders")
 	public ResponseEntity<String> addOrders(@RequestBody OrdersDto ordersdto){
 	
+		@SuppressWarnings("unused")
 		int order_id = ordersservice.addOrders(ordersdto);
 		
 		return new ResponseEntity<String>("inserted orderscode = ",HttpStatus.OK);

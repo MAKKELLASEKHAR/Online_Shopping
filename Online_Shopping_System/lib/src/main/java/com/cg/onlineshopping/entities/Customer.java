@@ -24,6 +24,9 @@ public class Customer {
 	@Column(name="email",length=35)
 	private String email;
 	
+	@Column(name="role",length=25)
+	private String role;
+	
 	@Column(name="mobile_number",length=15)
 	private long mobile_number;
 	
@@ -84,5 +87,13 @@ public class Customer {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	
 
 }
